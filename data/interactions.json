@@ -1,0 +1,38 @@
+[
+  {
+    "user_id": "U-01",
+    "document_id": "DOC-001",
+    "action": "opened",
+    "date": "2026-10-10"
+  },
+  {
+    "user_id": "U-01",
+    "document_id": "DOC-007",
+    "action": "opened",
+    "date": "2026-10-11"
+  },
+  {
+    "user_id": "U-02",
+    "document_id": "DOC-003",
+    "action": "opened",
+    "date": "2026-10-12"
+  },
+  {
+    "user_id": "U-02",
+    "document_id": "DOC-006",
+    "action": "saved",
+    "date": "2026-10-12"
+  },
+  {
+    "user_id": "U-03",
+    "document_id": "DOC-002",
+    "action": "opened",
+    "date": "2026-10-10"
+  },
+  {
+    "user_id": "U-04",
+    "document_id": "DOC-004",
+    "action": "opened",
+    "date": "2026-10-11"
+  }
+]
