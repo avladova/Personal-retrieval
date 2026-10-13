@@ -86,7 +86,7 @@ const $=id=>document.getElementById(id);
 function tokens(s){return (s.toLocaleLowerCase("ru").match(/[\p{L}\p{N}-]+/gu)||[]).filter(x=>x.length>1)}
 function render(){
  const p=profiles[$("profile").value];const q=$("query").value.trim();const qt=[...new Set(tokens(q))];
- const allowed=docs.filter(d=>d.access.some(a=>p.access.includes(a)) && (p.access.includes("executive")||d.access.includes(p.team)));
+ const allowed=docs.filter(d=>d.access.includes(p.team) || p.role==="executive");
  const ranked=allowed.map(d=>{
   const body=tokens(d.title+" "+d.text+" "+d.tags);const hit=qt.filter(t=>body.includes(t)).length;const lexical=qt.length?hit/qt.length:0;
   const role=d.roles.includes(p.role)?1:0;const team=d.access.includes(p.team)?1:0;const history=p.history.includes(d.id)?1:0;
