@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Интерактивная демонстрация четырёх сценариев персонализированного корпоративного поиска.">
+<title>Персонализированный корпоративный поиск — демо</title>
+<style>
+:root{--bg:#f4f6f9;--panel:#fff;--ink:#172033;--muted:#657187;--line:#dfe5ee;--accent:#2459a9;--accent-soft:#eaf1ff;--green:#18794e;--green-soft:#e8f6ee;--amber:#9a5b00;--amber-soft:#fff4dd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--accent)}.wrap{max-width:1180px;margin:auto;padding:28px 22px 56px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.eyebrow{font-size:.78rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;max-width:800px;margin:12px 0}h2{font-size:1.25rem;margin:0 0 12px}p{margin:.4rem 0 1rem}.sub{max-width:790px;color:var(--muted);font-size:1.06rem}.tag{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:6px 11px;color:var(--muted);font-size:.83rem;background:white}.scenarios{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0}.scenario{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:17px;text-align:left;cursor:pointer;color:inherit;min-height:150px;transition:border-color .15s,box-shadow .15s}.scenario:hover,.scenario:focus-visible{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px #2459a91a}.scenario.active{border:2px solid var(--accent);background:var(--accent-soft);padding:16px}.num{font-size:.8rem;color:var(--accent);font-weight:800;letter-spacing:.08em}.scenario strong{display:block;font-size:1rem;margin:8px 0}.scenario span:last-child{display:block;font-size:.88rem;color:var(--muted)}.layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:16px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:21px;min-width:0}.field{margin:15px 0}.field label{display:block;font-weight:650;font-size:.9rem;margin-bottom:6px}select,input{width:100%;font:inherit;border:1px solid #cbd4e2;border-radius:9px;padding:10px 11px;background:white;color:var(--ink)}.hint{font-size:.85rem;color:var(--muted)}.searchrow{display:flex;gap:9px;margin:14px 0 18px}.searchrow input{flex:1;min-width:0}.btn{border:0;border-radius:9px;background:var(--accent);color:white;font:inherit;font-weight:700;padding:10px 15px;cursor:pointer}.btn:focus-visible{outline:3px solid #80aaff}.summary{border-left:4px solid var(--accent);padding:10px 14px;background:#f5f8ff;border-radius:0 9px 9px 0;margin:0 0 18px}.summary strong{display:block;margin-bottom:3px}.results{display:grid;gap:10px}.doc{border:1px solid var(--line);border-radius:12px;padding:15px}.dochead{display:flex;justify-content:space-between;gap:10px;align-items:start}.doc h3{font-size:1rem;margin:0 0 5px}.doc p{font-size:.9rem;color:var(--muted);margin:0 0 9px}.score{white-space:nowrap;font-weight:800;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:5px 8px;font-size:.82rem}.meta{display:flex;gap:6px;flex-wrap:wrap}.chip{border-radius:99px;background:#f0f2f6;color:#49566a;font-size:.75rem;padding:3px 8px}.chip.good{background:var(--green-soft);color:var(--green)}.empty{padding:22px;text-align:center;color:var(--muted)}.security{display:flex;gap:10px;align-items:flex-start;background:var(--green-soft);color:#185b3b;padding:12px 14px;border-radius:10px;font-size:.9rem;margin-top:16px}.security b{display:block}.foot{color:var(--muted);font-size:.85rem;margin-top:24px;border-top:1px solid var(--line);padding-top:17px}.footlinks{display:flex;gap:15px;flex-wrap:wrap;margin-top:9px}@media(max-width:850px){.scenarios{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}}@media(max-width:480px){.wrap{padding:20px 13px 38px}.scenarios{grid-template-columns:1fr}.scenario{min-height:0}.searchrow{flex-direction:column}.panel{padding:16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <div class="top"><div class="eyebrow">Интерактивный MVP · Газпромбанк.Тех</div><span class="tag">Демонстрационные данные</span></div>
+  <h1>Персонализированный корпоративный поиск</h1>
+  <p class="sub">Один источник документов — разные виртуальные представления в зависимости от роли, подразделения и рабочего контекста. Выберите сценарий и запустите демонстрацию.</p>
+</header>
+
+<section aria-label="Сценарии демонстрации">
+  <div class="scenarios" role="group" aria-label="Выбор сценария">
+    <button class="scenario active" data-scenario="daily" aria-pressed="true"><span class="num">СЦЕНАРИЙ 01</span><strong>Ежедневная работа</strong><span>Найти регламент или рабочий документ по задаче.</span></button>
+    <button class="scenario" data-scenario="onboarding" aria-pressed="false"><span class="num">СЦЕНАРИЙ 02</span><strong>Онбординг</strong><span>Сформировать стартовое пространство нового сотрудника.</span></button>
+    <button class="scenario" data-scenario="rolechange" aria-pressed="false"><span class="num">СЦЕНАРИЙ 03</span><strong>Смена роли</strong><span>Пересчитать контекст при переходе в другую функцию.</span></button>
+    <button class="scenario" data-scenario="handover" aria-pressed="false"><span class="num">СЦЕНАРИЙ 04</span><strong>Передача дел</strong><span>Передать рабочий контекст без личной истории коллеги.</span></button>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="panel">
+    <h2>Контекст пользователя</h2>
+    <p class="hint">Измените профиль или запрос, чтобы увидеть перестроение выдачи.</p>
+    <div class="field"><label for="profile">Профиль сотрудника</label><select id="profile">
+      <option value="risk">Анна — риск-менеджер</option>
+      <option value="it">Борис — IT-архитектор</option>
+      <option value="corporate">Вера — корпоративный бизнес</option>
+      <option value="compliance">Дмитрий — комплаенс</option>
+    </select></div>
+    <div class="field"><label for="query">Поисковый запрос</label><input id="query" value="лимиты кредитного риска"></div>
+    <button class="btn" id="run">Выполнить поиск</button>
+    <div class="field"><label>Учитываемые сигналы</label><p class="hint">Текстовая релевантность · роль · подразделение · недавние взаимодействия</p></div>
+    <div class="hint">В этой странице реализован прозрачный демонстрационный алгоритм на ключевых словах. Это не production-поиск по embeddings.</div>
+  </aside>
+
+  <section class="panel" aria-live="polite" aria-atomic="false">
+    <div class="eyebrow" id="scenarioLabel">Сценарий 01</div>
+    <h2 id="resultTitle">Ежедневная работа</h2>
+    <div class="summary"><strong id="summaryTitle">Запрос адаптирован к рабочему контексту</strong><span id="summaryText">Выдача учитывает тему запроса и роль сотрудника.</span></div>
+    <div class="searchrow"><span class="tag" id="profileBadge">Анна · Риск-менеджмент</span><span class="tag" id="resultCount">0 документов</span></div>
+    <div class="results" id="results"></div>
+    <div class="security"><span aria-hidden="true">✓</span><div><b>Права доступа сохраняются</b><span>Сначала применяется фильтр доступности документа, затем — персональное ранжирование. Персонализация не выдаёт доступ к закрытым материалам.</span></div></div>
+  </section>
+</div>
+
+<footer class="foot">
+  <b>Границы демонстрации.</b> Данные синтетические; показатели не являются результатами пилота. В производственном контуре необходимы интеграция с источниками, проверка ACL, аудит и измерение качества на размеченных запросах.
+  <div class="footlinks"><a href="README.md">README и запуск локального приложения</a><a href="demo/app.py">Код Streamlit-демонстратора</a><a href="docs/mvp_specification.md">Описание MVP</a><a href="ontology/bank_governance_graph.json">Граф корпоративного управления</a></div>
+</footer>
+</main>
+<script>
+const profiles={
+ risk:{name:"Анна",role:"risk_manager",team:"risk",label:"Риск-менеджмент",access:["risk","executive"],history:["D1","D7"]},
+ it:{name:"Борис",role:"it_architect",team:"it",label:"IT и архитектура",access:["it","executive"],history:["D3","D6"]},
+ corporate:{name:"Вера",role:"corporate_manager",team:"corporate",label:"Корпоративный бизнес",access:["corporate","executive"],history:["D2"]},
+ compliance:{name:"Дмитрий",role:"compliance",team:"compliance",label:"Комплаенс-контроль",access:["compliance","executive"],history:["D4"]}
+};
+const docs=[
+{id:"D1",title:"Методика установления лимитов кредитного риска",text:"Порядок расчёта лимитов, контроль кредитного риска и эскалация превышений.",team:"Риск-менеджмент",access:["risk","executive"],roles:["risk_manager","executive"],tags:"лимиты кредитный риск контроль",date:"18.09.2026"},
+{id:"D2",title:"Регламент корпоративного кредитования",text:"Процедуры рассмотрения заявок корпоративных заёмщиков и согласования сделок.",team:"Корпоративный бизнес",access:["corporate","executive"],roles:["corporate_manager","executive"],tags:"кредитование корпоративный бизнес сделки",date:"26.09.2026"},
+{id:"D3",title:"Архитектурные принципы интеграции систем",text:"Требования к API, интеграционным шинам, журналированию и сопровождению сервисов.",team:"IT и Бэк-офис",access:["it","executive"],roles:["it_architect","executive"],tags:"API архитектура интеграция",date:"01.10.2026"},
+{id:"D4",title:"Порядок проверки соблюдения комплаенс-требований",text:"Проверки соответствия внутренних процессов законодательству и внутренним политикам.",team:"Комплаенс-контроль",access:["compliance","executive"],roles:["compliance","executive"],tags:"комплаенс контроль регуляторные требования",date:"22.09.2026"},
+{id:"D5",title:"Памятка по клиентским обращениям",text:"Обработка обращений, клиентский сервис и контроль операционных процедур.",team:"Розничный бизнес",access:["retail","executive"],roles:["retail_manager","executive"],tags:"розничный бизнес клиенты обращения",date:"30.09.2026"},
+{id:"D6",title:"Протокол технологического комитета: развитие платформы",text:"Решения по развитию IT-архитектуры, приоритетам платформы и техническим стандартам.",team:"Технологический комитет",access:["it","executive"],roles:["it_architect","executive"],tags:"технологический комитет архитектура платформа",date:"05.10.2026"},
+{id:"D7",title:"Материалы по управлению активами и пассивами",text:"Управление ликвидностью, гэпами и показателями баланса банка.",team:"АЛКО",access:["risk","executive"],roles:["risk_manager","executive"],tags:"АЛКО ликвидность активы пассивы",date:"12.09.2026"},
+{id:"D8",title:"Обзор управления рисками для руководителей",text:"Сводные подходы к управлению рисками, внутреннему контролю и мониторингу.",team:"Риск-менеджмент",access:["risk","executive"],roles:["risk_manager","executive"],tags:"риск управление руководство",date:"08.10.2026"}
+];
+const scenarios={
+ daily:{label:"Сценарий 01",title:"Ежедневная работа",profile:"risk",query:"лимиты кредитного риска",summary:"Найти документ для текущей задачи",text:"Сопоставляем слова запроса с доступными документами и поднимаем материалы, соответствующие рабочей роли и недавним действиям."},
+ onboarding:{label:"Сценарий 02",title:"Онбординг нового сотрудника",profile:"it",query:"архитектура интеграция API",summary:"Стартовое пространство по роли и подразделению",text:"Новый сотрудник получает базовый набор доступных материалов своей функции. Личной истории взаимодействий у нового профиля нет."},
+ rolechange:{label:"Сценарий 03",title:"Смена роли или подразделения",profile:"corporate",query:"кредитование сделки корпоративный клиент",summary:"Пересчёт ролевого и группового контекста",text:"После смены роли выдача строится по новому подразделению. История прежней роли не используется как служебная структура и не даёт дополнительных прав."},
+ handover:{label:"Сценарий 04",title:"Передача дел",profile:"compliance",query:"контроль регламент требования",summary:"Передать служебный контекст без личного профиля",text:"Преемник видит доступные материалы по роли и рабочим темам. История поисков и личные предпочтения предыдущего сотрудника не копируются."}
+};
+let activeScenario="daily";
+const $=id=>document.getElementById(id);
+function tokens(s){return (s.toLocaleLowerCase("ru").match(/[\p{L}\p{N}-]+/gu)||[]).filter(x=>x.length>1)}
+function render(){
+ const p=profiles[$("profile").value];const q=$("query").value.trim();const qt=[...new Set(tokens(q))];
+ const allowed=docs.filter(d=>d.access.some(a=>p.access.includes(a)) && (p.access.includes("executive")||d.access.includes(p.team)));
+ const ranked=allowed.map(d=>{
+  const body=tokens(d.title+" "+d.text+" "+d.tags);const hit=qt.filter(t=>body.includes(t)).length;const lexical=qt.length?hit/qt.length:0;
+  const role=d.roles.includes(p.role)?1:0;const team=d.access.includes(p.team)?1:0;const history=p.history.includes(d.id)?1:0;
+  const recency=d.date>="01.10.2026"?1:0;
+  const score=.5*lexical+.2*role+.15*team+.1*history+.05*recency;
+  return {...d,lexical,role,team,history,score};
+ }).sort((a,b)=>b.score-a.score||b.lexical-a.lexical);
+ $("profileBadge").textContent=p.name+" · "+p.label;
+ $("resultCount").textContent=ranked.length+" доступных документов";
+ $("results").innerHTML=ranked.length?ranked.map(d=>'<article class="doc"><div class="dochead"><div><h3>'+d.title+'</h3><p>'+d.text+'</p></div><span class="score">'+Math.round(d.score*100)+' баллов</span></div><div class="meta"><span class="chip">'+d.team+'</span><span class="chip">Текст: '+d.lexical.toFixed(2)+'</span><span class="chip">Роль: '+d.role+'</span><span class="chip">Подразделение: '+d.team.toLowerCase().includes(p.team)?'Совпадает':'доступно по ACL'+'</span><span class="chip">'+(d.history?'Есть взаимодействие':'Без истории')+'</span><span class="chip">Обновлён '+d.date+'</span></div></article>').join(""):'<div class="empty">Нет доступных документов для выбранного профиля.</div>';
+}
+function selectScenario(key){
+ activeScenario=key;const s=scenarios[key];$("scenarioLabel").textContent=s.label;$("resultTitle").textContent=s.title;$("summaryTitle").textContent=s.summary;$("summaryText").textContent=s.text;$("profile").value=s.profile;$("query").value=s.query;
+ document.querySelectorAll(".scenario").forEach(b=>{const on=b.dataset.scenario===key;b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on))});render();
+}
+document.querySelectorAll(".scenario").forEach(b=>b.addEventListener("click",()=>selectScenario(b.dataset.scenario)));
+$("run").addEventListener("click",render);$("profile").addEventListener("change",render);$("query").addEventListener("keydown",e=>{if(e.key==="Enter")render()});
+selectScenario("daily");
+</script>
+</body>
+</html>
