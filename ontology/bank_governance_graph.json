@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BankGovernanceManagementGraph",
+  "description": "Иерархическая и матричная структура связей органов управления коммерческого банка",
+  "nodes": [
+    {
+      "id": "node_01",
+      "label": "Общее собрание акционеров",
+      "level": "Высшее руководство (Governance)",
+      "type": "ShareholdersBody"
+    },
+    {
+      "id": "node_02",
+      "label": "Совет директоров (Наблюдательный совет)",
+      "level": "Высшее руководство (Strategic)",
+      "type": "StrategicGovernanceBody"
+    },
+    {
+      "id": "node_03",
+      "label": "Служба внутреннего аудита (СВА)",
+      "level": "Контроль и аудит",
+      "type": "IndependentControlBody"
+    },
+    {
+      "id": "node_04",
+      "label": "Правление банка / Председатель правления",
+      "level": "Исполнительное руководство",
+      "type": "ExecutiveGovernanceBody"
+    },
+    {
+      "id": "node_05",
+      "label": "Розничный бизнес",
+      "level": "Бизнес-блоки (Фронт-офис)",
+      "type": "OperationalUnit"
+    },
+    {
+      "id": "node_06",
+      "label": "Корпоративный бизнес",
+      "level": "Бизнес-блоки (Фронт-офис)",
+      "type": "OperationalUnit"
+    },
+    {
+      "id": "node_07",
+      "label": "IT и Бэк-офис",
+      "level": "Обеспечивающие блоки",
+      "type": "SupportUnit"
+    },
+    {
+      "id": "node_08",
+      "label": "Кредитный комитет",
+      "level": "Коллегиальные органы",
+      "type": "Committee"
+    },
+    {
+      "id": "node_09",
+      "label": "АЛКО (Комитет по управлению активами и пассивами)",
+      "level": "Коллегиальные органы",
+      "type": "Committee"
+    },
+    {
+      "id": "node_10",
+      "label": "Технологический комитет",
+      "level": "Коллегиальные органы",
+      "type": "Committee"
+    },
+    {
+      "id": "node_11",
+      "label": "Риск-менеджмент (CRO)",
+      "level": "Риски и Комплаенс",
+      "type": "ControlUnit"
+    },
+    {
+      "id": "node_12",
+      "label": "Комплаенс-контроль",
+      "level": "Риски и Комплаенс",
+      "type": "ControlUnit"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_01",
+      "target": "node_02",
+      "relation": "elects_and_controls",
+      "description": "Избирает и контролирует деятельность"
+    },
+    {
+      "source": "node_02",
+      "target": "node_03",
+      "relation": "appoints_and_monitors",
+      "description": "Назначает руководителя СВА и напрямую контролирует (обеспечение независимости аудита)"
+    },
+    {
+      "source": "node_02",
+      "target": "node_04",
+      "relation": "appoints_and_defines_strategy",
+      "description": "Назначает членов Правления и утверждает бизнес-стратегию"
+    },
+    {
+      "source": "node_04",
+      "target": "node_05",
+      "relation": "manages_linearly",
+      "description": "Линейное руководство операционной деятельностью"
+    },
+    {
+      "source": "node_04",
+      "target": "node_06",
+      "relation": "manages_linearly",
+      "description": "Линейное руководство операционной деятельностью"
+    },
+    {
+      "source": "node_04",
+      "target": "node_07",
+      "relation": "manages_linearly",
+      "description": "Линейное руководство поддерживающей инфраструктурой"
+    },
+    {
+      "source": "node_04",
+      "target": "node_08",
+      "relation": "delegates_authority",
+      "description": "Делегирует полномочия по одобрению крупных кредитов"
+    },
+    {
+      "source": "node_04",
+      "target": "node_09",
+      "relation": "delegates_authority",
+      "description": "Делегирует полномочия по управлению ликвидностью и гэпами"
+    },
+    {
+      "source": "node_04",
+      "target": "node_10",
+      "relation": "delegates_authority",
+      "description": "Делегирует полномочия по развитию IT-архитектуры"
+    },
+    {
+      "source": "node_04",
+      "target": "node_11",
+      "relation": "manages_functionally",
+      "description": "Функционально руководит, но с соблюдением независимости рисков"
+    },
+    {
+      "source": "node_04",
+      "target": "node_12",
+      "relation": "manages_functionally",
+      "description": "Контролирует исполнение общих регуляторных требований"
+    },
+    {
+      "source": "node_11",
+      "target": "node_05",
+      "relation": "sets_limits_for",
+      "description": "Устанавливает лимиты риска для розничных продуктов"
+    },
+    {
+      "source": "node_11",
+      "target": "node_06",
+      "relation": "sets_limits_for",
+      "description": "Устанавливает лимиты риска на заемщиков и отрасли"
+    },
+    {
+      "source": "node_12",
+      "target": "node_05",
+      "relation": "monitors_compliance",
+      "description": "Контролирует соответствие розничных процессов нормам ЦБ и ПОД/ФТ"
+    },
+    {
+      "source": "node_12",
+      "target": "node_06",
+      "relation": "monitors_compliance",
+      "description": "Контролирует соответствие корпоративных процессов законодательству"
+    },
+    {
+      "source": "node_08",
+      "target": "node_06",
+      "relation": "approves_deals_for",
+      "description": "Согласовывает сделки корпоративного кредитования выше лимитов орг-единиц"
+    }
+  ]
+}
